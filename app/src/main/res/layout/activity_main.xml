@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.zhaoqiang.databinding.Works" />
+
+        <variable
+            name="user"
+            type="com.example.zhaoqiang.databinding.User" />
+        <!--用户变量内数据描述可能会在此布局中使用的属性。-->
+        <variable
+            name="presenter"
+            type="com.example.zhaoqiang.databinding.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.zhaoqiang.databinding.MainActivity">
+
+        <!--布局内的表达式写入属性使用"@{}"语法-->
+        <TextView
+            android:id="@+id/tvOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}"
+            android:textSize="30dp" />
+
+        <!--<Button-->
+        <!--android:id="@+id/btnClick"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="@{presenter::btnClickMeHandler}"-->
+        <!--android:text="CLick me" />-->
+
+
+        <!-- lambda 表达式  @{()->指定name.需要点击事件方法名字()}-->
+
+        <Button
+            android:id="@+id/btnClickMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->presenter.btnClicked(user.name)}"
+            android:text="CLick me" />
+
+
+        <include layout="@layout/activity_base" />
+    </LinearLayout>
+
+
+</layout>
